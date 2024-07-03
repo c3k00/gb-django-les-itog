@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit Order</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="client">Client:</label>
+    <select id="client" name="client" required>
+        {% for client in clients %}
+        <option value="{{ client.id }}" {% if client.id == order.client.id %}selected{% endif %}>{{ client.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="products">Products:</label>
+    <select id="products" name="products" multiple required>
+        {% for product in products %}
+        <option value="{{ product.id }}" {% if product in order.orderitem_set.all.values_list('product', flat=True) %}selected{% endif %}>{{ product.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit">Save Changes</button>
+</form>
+<a href="{% url 'orders_list' %}">Back to Orders List</a>
+{% endblock %}

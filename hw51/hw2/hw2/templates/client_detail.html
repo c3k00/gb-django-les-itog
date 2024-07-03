@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Детали клиента: {{ client.name }}</h1>
+<p><strong>Email:</strong> {{ client.email }}</p>
+<p><strong>Телефон:</strong> {{ client.phone }}</p>
+<p><strong>Адрес:</strong> {{ client.address }}</p>
+<p><strong>Дата регистрации:</strong> {{ client.registration_date }}</p>
+<a href="{% url 'edit_client' client.id %}">Редактировать</a>
+<form method="post" action="{% url 'delete_client' client.id %}">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+</form>
+<a href="{% url 'clients_list' %}">Назад к списку</a>
+{% endblock %}

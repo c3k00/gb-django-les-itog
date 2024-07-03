@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Магазин{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Магазин</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'clients_list' %}">Клиенты</a></li>
+                <li><a href="{% url 'products_list' %}">Товары</a></li>
+                <li><a href="{% url 'orders_list' %}">Заказы</a></li>
+                <li><a href="{% url 'ordered_products' %}">Заказы за период</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Магазин</p>
+    </footer>
+</body>
+</html>
